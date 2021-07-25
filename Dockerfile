@@ -8,4 +8,4 @@ WORKDIR code
 COPY Pipfile .
 RUN pipenv install
 COPY . .
-CMD ["pipenv", "run", "./back.py"]
+CMD ["pipenv", "run", "./download.py"]

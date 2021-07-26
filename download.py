@@ -4,6 +4,7 @@ import pyicloud
 import sys
 import json
 import os
+import hashlib
 
 from pyicloud import PyiCloudService
 
@@ -38,11 +39,14 @@ photos = iter(api.photos.all)
 files = os.listdir(path)
 
 for photo in photos:
-    photo_path = os.path.join(path, photo.filename)
-    if photo.filename in files and os.path.getsize(photo_path) == photo.size:
-        print("Already downloaded", photo.filename)
+    hash = haslib.sha1(photo.id + photo.filename).hexdigest()
+    ext = pathlib.Path(photo.filename).suffix
+    filename = hash + "." + ext
+    photo_path = os.path.join(path, filename)
+    if filename in files and os.path.getsize(photo_path) == photo.size:
+        print("Already downloaded", photo.filename, "as", filename)
         continue
-    print("Downloading", photo.filename)
+    print("Downloading", photo.filename, "as", filename)
     download = photo.download()
     with open(photo_path, 'wb') as opened_file:
         opened_file.write(download.raw.read())

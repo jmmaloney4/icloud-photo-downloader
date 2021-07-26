@@ -35,7 +35,12 @@ print(api.photos.all)
 
 photos = iter(api.photos.all)
 
+files = os.listdir(path)
+
 for photo in photos:
+    if photo.filename in files:
+        print("Already downloaded", photo.filename)
+        continue
     print("Downloading", photo.filename)
     download = photo.download()
     with open(photo.filename, 'wb') as opened_file:

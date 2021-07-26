@@ -10,6 +10,8 @@ from pyicloud import PyiCloudService
 email = os.environ['ICLOUD_EMAIL']
 password = os.environ['ICLOUD_PASSWORD']
 api = PyiCloudService(email, password)
+path = os.environ.get('ICLOUD_PATH', "/data")
+print(path)
 
 if api.requires_2sa:
     import click

@@ -43,5 +43,5 @@ for photo in photos:
         continue
     print("Downloading", photo.filename)
     download = photo.download()
-    with open(photo.filename, 'wb') as opened_file:
+    with open(os.path.join(path, photo.filename), 'wb') as opened_file:
         opened_file.write(download.raw.read())

@@ -5,6 +5,7 @@ import sys
 import json
 import os
 import hashlib
+import pathlib
 
 from pyicloud import PyiCloudService
 
@@ -39,7 +40,7 @@ photos = iter(api.photos.all)
 files = os.listdir(path)
 
 for photo in photos:
-    hash = haslib.sha1(photo.id + photo.filename).hexdigest()
+    hash = hashlib.sha1(photo.id + photo.filename).hexdigest()
     ext = pathlib.Path(photo.filename).suffix
     filename = hash + "." + ext
     photo_path = os.path.join(path, filename)

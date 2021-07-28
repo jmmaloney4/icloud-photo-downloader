@@ -40,7 +40,7 @@ photos = iter(api.photos.all)
 files = os.listdir(path)
 
 for photo in photos:
-    hash = hashlib.sha1(photo.id + photo.filename).hexdigest()
+    hash = hashlib.sha1((photo.id + photo.filename).encode('utf-8')).hexdigest()
     ext = pathlib.Path(photo.filename).suffix
     filename = hash + "." + ext
     photo_path = os.path.join(path, filename)

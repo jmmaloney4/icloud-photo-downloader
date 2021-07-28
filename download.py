@@ -42,7 +42,7 @@ files = os.listdir(path)
 for photo in photos:
     hash = hashlib.sha1((photo.id + photo.filename).encode('utf-8')).hexdigest()
     ext = pathlib.Path(photo.filename).suffix
-    filename = hash + "." + ext
+    filename = hash + ext
     photo_path = os.path.join(path, filename)
     if filename in files and os.path.getsize(photo_path) == photo.size:
         print("Already downloaded", photo.filename, "as", filename)

@@ -1,4 +1,4 @@
-FROM ubuntu:focal@sha256:82becede498899ec668628e7cb0ad87b6e1c371cb8a1e597d83a47fac21d6af3
+FROM ubuntu:focal@sha256:9d6a8699fb5c9c39cf08a0871bd6219f0400981c570894cd8cbea30d3424a31f
 RUN apt-get update && apt-get -y upgrade \
     && apt-get -y install python3 python3-pip \
     && apt-get -y autoremove
